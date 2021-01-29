@@ -4,6 +4,10 @@ This is the graphql api for study together.
 
 It has a query for getting a user's study statistics. Soon to add a query for getting leaderboard information.
 
+## Usage
+
+Run `npm install && npm run dev` to start the api.
+
 ### Queries:
 
 #### `getUserStats`
