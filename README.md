@@ -53,7 +53,7 @@ query {
 ```
 
 Example response:
-```graphql
+```json
 {
   "data": {
     "getUserStats": {
