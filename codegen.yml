@@ -1,0 +1,9 @@
+overwrite: true
+schema: 'http://localhost:4001/study_api'
+documents: null
+generates:
+  src/types/index.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-resolvers'
