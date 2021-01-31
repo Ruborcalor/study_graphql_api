@@ -13,7 +13,7 @@ const getUserStats = async (
   const { userId } = args
 
   const user = generateUserStats(parseInt(userId))
-  console.log(user)
+  // console.log(user)
 
   return user
 }

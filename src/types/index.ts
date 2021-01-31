@@ -66,6 +66,30 @@ export type TimePoint = {
   y?: Maybe<Scalars['Float']>
 }
 
+export type Leaderboard = {
+  __typename?: 'Leaderboard'
+  /** Represents a leaderboard on a time interval */
+  pastDayLeaderboard?: Maybe<Array<Maybe<LeaderboardRow>>>
+  pastWeekLeaderboard?: Maybe<Array<Maybe<LeaderboardRow>>>
+  pastMonthLeaderboard?: Maybe<Array<Maybe<LeaderboardRow>>>
+  allTimeLeaderboard?: Maybe<Array<Maybe<LeaderboardRow>>>
+}
+
+export type LeaderboardRow = {
+  __typename?: 'LeaderboardRow'
+  /** One row from a leaderboard */
+  username?: Maybe<Scalars['String']>
+  studyTimeInMinutes?: Maybe<Scalars['Int']>
+}
+
+export enum TimeInterval {
+  /** Time interval enum */
+  PastDay = 'pastDay',
+  PastWeek = 'pastWeek',
+  PastMonth = 'pastMonth',
+  AllTime = 'allTime',
+}
+
 export type Query = {
   __typename?: 'Query'
   _service: _Service
@@ -73,6 +97,8 @@ export type Query = {
   helloWorld?: Maybe<Scalars['String']>
   /** Get a user's stats */
   getUserStats?: Maybe<UserStats>
+  /** Get the leaderboard */
+  getLeaderboard?: Maybe<Array<Maybe<LeaderboardRow>>>
 }
 
 export type QueryHelloWorldArgs = {
@@ -81,6 +107,10 @@ export type QueryHelloWorldArgs = {
 
 export type QueryGetUserStatsArgs = {
   userId?: Maybe<Scalars['ID']>
+}
+
+export type QueryGetLeaderboardArgs = {
+  timeInterval: TimeInterval
 }
 
 export type _Service = {
@@ -213,6 +243,9 @@ export type ResolversTypes = {
   StudyRole: ResolverTypeWrapper<StudyRole>
   String: ResolverTypeWrapper<Scalars['String']>
   TimePoint: ResolverTypeWrapper<TimePoint>
+  Leaderboard: ResolverTypeWrapper<Leaderboard>
+  LeaderboardRow: ResolverTypeWrapper<LeaderboardRow>
+  TimeInterval: TimeInterval
   Query: ResolverTypeWrapper<{}>
   ID: ResolverTypeWrapper<Scalars['ID']>
   _Service: ResolverTypeWrapper<_Service>
@@ -229,6 +262,8 @@ export type ResolversParentTypes = {
   StudyRole: StudyRole
   String: Scalars['String']
   TimePoint: TimePoint
+  Leaderboard: Leaderboard
+  LeaderboardRow: LeaderboardRow
   Query: {}
   ID: Scalars['ID']
   _Service: _Service
@@ -376,6 +411,46 @@ export type TimePointResolvers<
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
 }
 
+export type LeaderboardResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['Leaderboard'] = ResolversParentTypes['Leaderboard']
+> = {
+  pastDayLeaderboard?: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['LeaderboardRow']>>>,
+    ParentType,
+    ContextType
+  >
+  pastWeekLeaderboard?: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['LeaderboardRow']>>>,
+    ParentType,
+    ContextType
+  >
+  pastMonthLeaderboard?: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['LeaderboardRow']>>>,
+    ParentType,
+    ContextType
+  >
+  allTimeLeaderboard?: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['LeaderboardRow']>>>,
+    ParentType,
+    ContextType
+  >
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
+}
+
+export type LeaderboardRowResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['LeaderboardRow'] = ResolversParentTypes['LeaderboardRow']
+> = {
+  username?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>
+  studyTimeInMinutes?: Resolver<
+    Maybe<ResolversTypes['Int']>,
+    ParentType,
+    ContextType
+  >
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>
+}
+
 export type QueryResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']
@@ -393,6 +468,12 @@ export type QueryResolvers<
     ContextType,
     RequireFields<QueryGetUserStatsArgs, never>
   >
+  getLeaderboard?: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['LeaderboardRow']>>>,
+    ParentType,
+    ContextType,
+    RequireFields<QueryGetLeaderboardArgs, 'timeInterval'>
+  >
 }
 
 export type _ServiceResolvers<
@@ -409,6 +490,8 @@ export type Resolvers<ContextType = any> = {
   LeaderboardPlacement?: LeaderboardPlacementResolvers<ContextType>
   StudyRole?: StudyRoleResolvers<ContextType>
   TimePoint?: TimePointResolvers<ContextType>
+  Leaderboard?: LeaderboardResolvers<ContextType>
+  LeaderboardRow?: LeaderboardRowResolvers<ContextType>
   Query?: QueryResolvers<ContextType>
   _Service?: _ServiceResolvers<ContextType>
 }

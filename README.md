@@ -347,7 +347,100 @@ Example response:
 }
 ```
 
-#### Example `getUser`
+#### `getLeaderboard`
 
-#### Example `getLeaderboard` query:
-Coming soon...
+Example request:
+
+```graphql
+query {
+  getLeaderboard(timeInterval: pastDay)
+  {
+   username
+    studyTimeInMinutes
+  }
+}
+```
+
+Example response:
+
+```json
+{
+  "data": {
+    "getLeaderboard": [
+      {
+        "username": "ic2gTUdC",
+        "studyTimeInMinutes": 360
+      },
+      {
+        "username": "3r3K68hl",
+        "studyTimeInMinutes": 360
+      },
+      {
+        "username": "8FHgiJsG",
+        "studyTimeInMinutes": 360
+      },
+      {
+        "username": "xPjYWxOg",
+        "studyTimeInMinutes": 360
+      },
+      {
+        "username": "ENZi1d66",
+        "studyTimeInMinutes": 360
+      },
+      {
+        "username": "JNrTnRiQ",
+        "studyTimeInMinutes": 360
+      },
+      {
+        "username": "l2MO9C0C",
+        "studyTimeInMinutes": 360
+      },
+      {
+        "username": "12E9sW0H",
+        "studyTimeInMinutes": 360
+      },
+      {
+        "username": "8jaBukCn",
+        "studyTimeInMinutes": 360
+      },
+      {
+        "username": "MTyMFol3",
+        "studyTimeInMinutes": 360
+      },
+      {
+        "username": "7lIwiU8Z",
+        "studyTimeInMinutes": 360
+      },
+      {
+        "username": "0BYVjBCl",
+        "studyTimeInMinutes": 360
+      },
+      {
+        "username": "lj7ucRMK",
+        "studyTimeInMinutes": 360
+      },
+      {
+        "username": "asO3XyQe",
+        "studyTimeInMinutes": 360
+      },
+      {
+        "username": "peU3tBgB",
+        "studyTimeInMinutes": 360
+      },
+      {
+        "username": "tEyvvR5g",
+        "studyTimeInMinutes": 360
+      },
+      {
+        "username": "LErz0jIF",
+        "studyTimeInMinutes": 360
+      },
+      {
+        "username": "ADZxu5P3",
+        "studyTimeInMinutes": 360
+      },
+      ...
+    ]
+  }
+}
+```

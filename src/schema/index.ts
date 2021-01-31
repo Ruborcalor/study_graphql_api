@@ -4,9 +4,11 @@ import { mergeTypeDefs } from '@graphql-tools/merge'
 // import Mutation from './Mutation'
 import Query from './Query'
 
-import User from './User'
+import UserTypes from './User'
+
+import LeaderboardTypes from './Leaderboard'
 
 // Schema in alphabetical order
-const schema = mergeTypeDefs([Query, ...User])
+const schema = mergeTypeDefs([Query, ...UserTypes, ...LeaderboardTypes])
 
 export default schema

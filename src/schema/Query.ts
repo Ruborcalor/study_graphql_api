@@ -10,6 +10,10 @@ const Query = gql`
     Get a user's stats
     """
     getUserStats(userId: ID): UserStats
+    """
+    Get the leaderboard
+    """
+    getLeaderboard(timeInterval: TimeInterval!): [LeaderboardRow]
   }
 `
 
